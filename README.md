@@ -18,7 +18,7 @@
 
 
 ```
-https://github.com/Archirithm/quickshell.git
+git clone https://github.com/Archirithm/quickshell.git
 ```
 将克隆下来的`quickshell`文件夹放到`.config`目录下，提前备份好自己的配置，或者创建快照。终端输入`qs`运行quickshell
 ## 开机自启
