@@ -34,7 +34,7 @@ Mod+A { spawn "sh" "-c" "echo 'toggle' > /tmp/qs_launcher.pipe"; }
 Mod键=win键。`Mod+P`打开quickshell锁屏`Mod+M`打开灵动岛天气，`Mod+Shift+W`打开灵动岛壁纸，`Mod+A`打开灵动岛app启动器。
 稍微解释下灵动岛快捷键，例如`Mod+M`打印‘dashboard’到`/tmp/qs_launcher.pipe`管道文件中，quickshell后台收到信息展开灵动岛。/tmp是系统临时文件，阅后即焚，不用担心。
 ## 已知问题
-1. 系统托盘中可能出现图标丢失的顶框导致只显示紫黑方块
+1. 系统托盘中可能出现图标丢失的情况导致只显示紫黑方块
 这个问题是由于qt软件主题造成的解决办法设置QT_QPA_PLATFORMTHEME=gtk3环境变量，例如你可以
 ```
 mkdir -p ~/.config/environment.d
