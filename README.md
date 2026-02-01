@@ -56,23 +56,22 @@ Mod+A { spawn "sh" "-c" "echo 'toggle' > /tmp/qs_launcher.pipe"; }
 Mod键=win键。鼠标左键打开媒体
 鼠标左键打开媒体
 <p align="center">
-  <img src="./picture/Screenshot from 2026-02-01 14-17-47.png" width="600" />
+  <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-17-47.png" width="500">
 </p>
 `Mod+P`打开quickshell锁屏
 <p align="center">
-  <img src="./picture/Pasted image.png" width="600" />
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Pasted image.png" width="500">
 </p>
 `Mod+M`打开灵动岛天气
 <p align="center">
-  <img src="./picture/Screenshot from 2026-02-01 14-18-07.png" width="600" />
-</p>
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-18-07.png" width="500"></p>
 `Mod+Shift+W`打开灵动岛壁纸
 <p align="center">
-  <img src="./picture/Screenshot from 2026-02-01 14-35-57.png" width="600" />
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-35-57.png" width="500">
 </p>
 `Mod+A`打开灵动岛app启动器。
 <p align="center">
-  <img src="./picture/Screenshot from 2026-02-01 14-35-12.png" width="600" />
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-35-12.png" width="500">
 </p>
 稍微解释下灵动岛快捷键，例如`Mod+M`打印‘dashboard’到`/tmp/qs_launcher.pipe`管道文件中，quickshell后台收到信息展开灵动岛。/tmp是系统临时文件，阅后即焚，不用担心。
 
