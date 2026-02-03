@@ -9,7 +9,7 @@
 - qt5-graphicaleffects（处理svg矢量图）
 - pavucontrol（音频图形化界面）
 - nm-connection-editor（网络图形化界面）
-  我觉得既然都用quickshell了，这些乱七八糟的第三方图形化界面都可以用quickshell重写，以后的版本我会重新统一下ui。
+我觉得既然都用quickshell了，这些乱七八糟的第三方图形化界面都可以用quickshell重写，以后的版本我会重新统一下ui。
 - powerprofilesctl（电源管理按钮）
 - wlogout（电源菜单，样式可以参考我另一个仓库下的配置文件）
 - swww（壁纸切换工具。我将壁纸放在了./.config/wallpaper目录下，参考我的[dotfiles/wallpaper](https://github.com/Archirithm/dotfiles/tree/master/wallpaper)）
