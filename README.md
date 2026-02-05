@@ -80,6 +80,7 @@ Mod键=win键。
  <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-35-12.png" width="500">
 </p>
 稍微解释下灵动岛快捷键，例如`Mod+M`打印‘dashboard’到`/tmp/qs_launcher.pipe`管道文件中，quickshell后台收到信息展开灵动岛。/tmp是系统临时文件，阅后即焚，不用担心。
+（现在我觉得这种管道文件的IPC通信效率太低了，经常卡键，后面我得换一个方式实现quickshell和niri之间的通信。）
 
 ## 已知问题
 1. 系统托盘中可能出现图标丢失的情况导致只显示紫黑方块
