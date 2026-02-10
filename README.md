@@ -1,5 +1,5 @@
 # 手动安装
-## 由于up本人还未在虚拟机或实体机里复刻，手动安装仅供参考，安装前请先备份好自己的数据或者创建快照。
+## 由于up本人还未在虚拟机或实体机里复刻，手动安装仅供参考，安装前请先备份好自己的数据或者创建快照。脚本安装等有空了再做，最近很忙。
  b站演示视频[爱吹笛子的托儿索](https://www.bilibili.com/video/BV1PK62BTE9b/?vd_source=6afb576b864e69724a04d265fd065105)
  ，**完整的~/.config配置在[dotfiles](https://github.com/Archirithm/dotfiles)**。
 ## 必要的包
@@ -8,8 +8,9 @@
 - cava（提供音频可视模块）
 - qt5-graphicaleffects（处理svg矢量图）
 - pavucontrol（音频图形化界面）
-- powerprofilesctl（电源管理按钮）
 - nm-connection-editor（网络图形化界面）
+我觉得既然都用quickshell了，这些乱七八糟的第三方图形化界面都可以用quickshell重写，以后的版本我会重新统一下ui。
+- powerprofilesctl（电源管理按钮）
 - wlogout（电源菜单，样式可以参考我另一个仓库下的配置文件）
 - swww（壁纸切换工具。我将壁纸放在了./.config/wallpaper目录下，参考我的[dotfiles/wallpaper](https://github.com/Archirithm/dotfiles/tree/master/wallpaper)）
 ## 可能需要的包（提供更好的体验）
@@ -79,6 +80,7 @@ Mod键=win键。
  <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-35-12.png" width="500">
 </p>
 稍微解释下灵动岛快捷键，例如`Mod+M`打印‘dashboard’到`/tmp/qs_launcher.pipe`管道文件中，quickshell后台收到信息展开灵动岛。/tmp是系统临时文件，阅后即焚，不用担心。
+（现在我觉得这种管道文件的IPC通信效率太低了，经常卡键，后面我得换一个方式实现quickshell和niri之间的通信。）
 
 ## 已知问题
 1. 系统托盘中可能出现图标丢失的情况导致只显示紫黑方块
