@@ -55,7 +55,7 @@ Mod+Shift+W { spawn "sh" "-c" "echo 'wallpaper' > /tmp/qs_launcher.pipe"; }
 Mod+A { spawn "sh" "-c" "echo 'toggle' > /tmp/qs_launcher.pipe"; }
 
 ```
-Mod键=win键。
+Mod键=win键。鼠标中键打开歌词。
 鼠标左键打开媒体
 <p align="center">
   <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-17-47.png" width="500">
