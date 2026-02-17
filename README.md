@@ -1,7 +1,7 @@
 # 手动克隆demo
 ## 由于up本人还未在虚拟机或实体机里复刻，手动安装仅供参考，安装前请先备份好自己的数据或者创建快照。脚本安装等有空了再做，最近很忙。
-我在虚拟机里试了一下能打开，没问题。但克隆前还是要做好备份。
- b站演示视频[爱吹笛子的托儿索](https://www.bilibili.com/video/BV1PK62BTE9b/?vd_source=6afb576b864e69724a04d265fd065105)
+我在虚拟机里试了一下能打开，没问题。但克隆前还是要做好备份。现在的配置还不能碰瓷dms、noctalia这些大佬的qs，有的地方太糙了，如果你想试试看的话可以跟着安装。
+ b站演示视频[爱吹笛子的托儿索](https://www.bilibili.com/video/BV1MmFQzGE7i/?share_source=copy_web&vd_source=4e3ba27da89beb0783bf65abc13f8a81)
  ，**完整的~/.config配置在[dotfiles](https://github.com/Archirithm/dotfiles)**。
 ## 必要的包
 - niri（只能是niri，因为配置里有用到niri的命令。）
