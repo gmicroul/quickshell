@@ -68,7 +68,7 @@ Mod键=win键。鼠标中键打开歌词。
 
 `Mod+P`打开quickshell锁屏
 <p align="center">
- <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Pasted image.png" width="500">
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-19 20-14-22.png" width="500">
 </p>
 
 `Mod+M`打开灵动岛天气
@@ -82,7 +82,7 @@ Mod键=win键。鼠标中键打开歌词。
 
 `Mod+A`打开灵动岛app启动器。
 <p align="center">
- <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-35-12.png" width="500">
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-19 20-13-35.png" width="500">
 </p>
 
 现在快捷键全部变成quickshell自己的ipc接口。
@@ -102,3 +102,6 @@ mkdir -p ~/.config/environment.d && echo "QT_QPA_PLATFORMTHEME=gtk3" > ~/.config
 
 2. 播放歌曲的时候如果在播放器里面手动调整进度条会发现灵动岛歌词和媒体进度条没有同步变过去，这个时候只需要暂停播放就能同步进度条了。这个问题我发现dms中也没解决，如果有大佬有方法可以教教我。
 3. up的两个屏幕都是2k屏幕，所有配置文件的高宽都写死了，低分辨率下组件会很大，这个尺寸我以后得重写一遍。
+
+
+
