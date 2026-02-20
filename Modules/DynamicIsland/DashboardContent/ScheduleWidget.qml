@@ -8,7 +8,7 @@ import qs.config
 Rectangle {
     id: root
     color: Colorsheme.surface_container_high
-    radius: 16 // 与其他卡片对齐
+    radius: 16
 
     property var scheduleItems: []
     property var timeHeaders: []
@@ -20,40 +20,43 @@ Rectangle {
     property int headerH: 25    
     property int gridSpacing: 8 
 
-    // 完美融入 Colorsheme 的课程卡片底色
-    function getColorForCourse(courseName) {
-        if (!courseName || courseName.trim() === "") return "transparent";
+    // ==========================================
+    // 纯粹的 ID 映射引擎 (4个固定深色 + 4个壁纸动态色)
+    // ==========================================
+    function getColorById(id) {
         let colors = [
+            // 前 4 个：主题固定的暗色容器
             Colorsheme.primary_container, 
             Colorsheme.secondary_container, 
             Colorsheme.tertiary_container, 
             Colorsheme.surface_variant, 
-            "#4a2b29", 
-            "#5c4524"
+            // 后 4 个：壁纸的高亮主色，强行压暗 3.5 倍作为底色
+            Qt.darker(Colorsheme.primary, 3.5), 
+            Qt.darker(Colorsheme.secondary, 3.5), 
+            Qt.darker(Colorsheme.tertiary, 3.5), 
+            Qt.darker(Colorsheme.error, 3.5)
         ];
-        let hash = 0;
-        for (let i = 0; i < courseName.length; i++) hash = courseName.charCodeAt(i) + ((hash << 5) - hash);
-        return colors[Math.abs(hash) % colors.length];
+        return colors[id % colors.length]; // 无限循环轮询
     }
 
-    // 配合底色的课程文字颜色
-    function getTextColorForCourse(courseName) {
-        if (!courseName || courseName.trim() === "") return "transparent";
+    function getTextColorById(id) {
         let colors = [
+            // 前 4 个：对应容器的柔和文字色
             Colorsheme.on_primary_container, 
             Colorsheme.on_secondary_container, 
             Colorsheme.on_tertiary_container, 
             Colorsheme.on_surface_variant, 
-            "#ffdad5", 
-            "#d8c2bf"
+            // 后 4 个：对应底色的原版亮色，极致清晰
+            Colorsheme.primary, 
+            Colorsheme.secondary, 
+            Colorsheme.tertiary, 
+            Colorsheme.error
         ];
-        let hash = 0;
-        for (let i = 0; i < courseName.length; i++) hash = courseName.charCodeAt(i) + ((hash << 5) - hash);
-        return colors[Math.abs(hash) % colors.length];
+        return colors[id % colors.length]; // 无限循环轮询
     }
 
     // ==========================================
-    // 带有安全缓冲区的暴力原生读取
+    // 安全缓冲区 JSON 读取引擎
     // ==========================================
     property string jsonBuffer: ""
 
@@ -62,23 +65,16 @@ Rectangle {
         command: ["cat", Quickshell.env("HOME") + "/.cache/quickshell/schedule.json"]
         running: false
         stdout: SplitParser {
-            onRead: (data) => {
-                // 将每一行拼接起来，不急着解析
-                root.jsonBuffer += data;
-            }
+            onRead: (data) => { root.jsonBuffer += data; }
         }
         onExited: {
-            // 当 cat 命令执行完毕后，一次性解析完整的 JSON
             try {
                 if (root.jsonBuffer.trim() !== "") {
                     let parsed = JSON.parse(root.jsonBuffer);
                     root.timeHeaders = parsed.timeHeaders || [];
                     root.scheduleItems = parsed.scheduleItems || [];
                 }
-            } catch(e) { 
-                console.log("课表 JSON 解析错误:", e); 
-            }
-            // 清空缓冲区，为下一次刷新做准备
+            } catch(e) { console.log("课表 JSON 解析错误:", e); }
             root.jsonBuffer = ""; 
         }
     }
@@ -95,7 +91,7 @@ Rectangle {
         anchors.fill: parent
         anchors.margins: 12
 
-        // 【象限 1：左上角 (完全冻结)】
+        // 【象限 1：左上角 (点击手动刷新)】
         Rectangle {
             x: 0; y: 0; width: timeW; height: headerH
             color: "transparent"
@@ -105,8 +101,6 @@ Rectangle {
                 color: Colorsheme.on_surface_variant
                 font.pixelSize: 11; font.bold: true; font.family: Sizes.fontFamily
             }
-            
-            // 点击 Time 依然可以手动刷新！
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
@@ -185,14 +179,16 @@ Rectangle {
                         Layout.preferredWidth: cellW; Layout.preferredHeight: cellH
                         Layout.fillWidth: true; Layout.fillHeight: true
                         radius: 8
-                        color: modelData.isEmpty ? "transparent" : root.getColorForCourse(modelData.text)
+                        
+                        // 彻底抛弃名字计算，直接通过 Python 传入的 ID 调用颜色
+                        color: modelData.isEmpty ? "transparent" : root.getColorById(modelData.colorId)
                         border.width: modelData.isEmpty ? 1 : 0
                         border.color: Colorsheme.outline_variant
 
                         Text {
                             anchors.fill: parent; anchors.margins: 4
                             text: modelData.text.replace(" (", "\n(").replace("（", "\n（")
-                            color: root.getTextColorForCourse(modelData.text)
+                            color: root.getTextColorById(modelData.colorId)
                             font.pixelSize: 10; font.bold: !modelData.isEmpty; font.family: Sizes.fontFamily
                             horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
                             wrapMode: Text.WordWrap; elide: Text.ElideRight
@@ -202,23 +198,18 @@ Rectangle {
             }
         }
 
-        // ==========================================
-        // 3. 右键拖拽与锁死判定
-        // ==========================================
+        // 【右键拖拽逻辑】
         MouseArea {
             x: timeW + gridSpacing; y: headerH + gridSpacing
             width: parent.width - x; height: parent.height - y
             acceptedButtons: Qt.RightButton 
             cursorShape: pressed ? Qt.ClosedHandCursor : Qt.ArrowCursor
 
-            property real startX: 0
-            property real startY: 0
-            property real startContentX: 0
-            property real startContentY: 0
+            property real startX: 0; property real startY: 0
+            property real startContentX: 0; property real startContentY: 0
 
             onPressed: (mouse) => {
-                startX = mouse.x
-                startY = mouse.y
+                startX = mouse.x; startY = mouse.y
                 startContentX = scheduleScroll.contentItem.contentX
                 startContentY = scheduleScroll.contentItem.contentY
             }

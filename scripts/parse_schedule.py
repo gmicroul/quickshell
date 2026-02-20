@@ -21,7 +21,6 @@ def parse_markdown():
         line = line.strip()
         if not line.startswith("|"):
             continue
-        # 清理首尾的竖线并分割单元格，同时去掉 markdown 的粗体星号
         if line.startswith("|"):
             line = line[1:]
         if line.endswith("|"):
@@ -29,7 +28,6 @@ def parse_markdown():
         cols = [col.strip().replace("**", "") for col in line.split("|")]
         grid.append(cols)
 
-    # 至少要有：表头、分割线、至少一行数据
     if len(grid) < 3:
         return None
 
@@ -40,15 +38,20 @@ def parse_markdown():
     time_headers = []
     parsed_items = []
 
-    # 记录是否已经被上方的合并单元格占据
+    # ==========================================
+    # 核心：全局课程 ID 发号器
+    # ==========================================
+    course_color_map = {}
+    next_color_id = 0
+
     skip = [[False] * cols for _ in range(rows)]
 
-    # 提取第 0 列作为左侧固定的时间段
+    # 提取左侧时间段
     for r in range(rows):
         if len(body[r]) > 0:
             time_headers.append(body[r][0])
 
-    # 遍历星期一到星期日的课程
+    # 遍历核心网格
     for c in range(1, cols):
         for r in range(rows):
             if skip[r][c]:
@@ -57,8 +60,8 @@ def parse_markdown():
             text = body[r][c] if c < len(body[r]) else ""
             row_span = 1
 
-            # 如果不是空课，检查下方是否有连上的课（同一列名称相同），进行合并
             if text != "":
+                # 纵向合并逻辑
                 while (
                     r + row_span < rows
                     and c < len(body[r + row_span])
@@ -67,13 +70,19 @@ def parse_markdown():
                     skip[r + row_span][c] = True
                     row_span += 1
 
+                # 给新课程发号
+                if text not in course_color_map:
+                    course_color_map[text] = next_color_id
+                    next_color_id += 1
+
             parsed_items.append(
                 {
                     "row": r,
-                    "col": c - 1,  # 将星期一变成第 0 列
+                    "col": c - 1,
                     "rowSpan": row_span,
                     "text": text,
                     "isEmpty": (text == ""),
+                    "colorId": course_color_map.get(text, 0),  # 写入分配好的纯净 ID
                 }
             )
 
@@ -85,6 +94,7 @@ def main():
     data = parse_markdown()
 
     if data:
+        # 去掉 indent=2，生成紧凑的单行 JSON，绝对不会触发 QML 的 Parse Error
         with open(CACHE_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False)
         print(f"✅ 课表解析成功！JSON 已保存至: {CACHE_FILE}")
