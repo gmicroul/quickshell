@@ -56,33 +56,39 @@ Mod+M { spawn "quickshell" "ipc" "call" "island" "dashboard"; }
 // 打开/关闭壁纸切换器 (Wallpaper)
 Mod+Shift+W { spawn "quickshell" "ipc" "call" "island" "wallpaper"; }
 
-// 打开/关闭应用启动器 (Launcher)
+// 打开/关闭应用启动器 (Launcher) - 对应之前的 'toggle'
  Mod+A { spawn "quickshell" "ipc" "call" "island" "launcher"; }
 
 ```
-Mod键=win键。鼠标中键打开歌词。
+Mod键=win键。
+鼠标中键打开歌词
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Archirithm/picture/main/lyrics.png" width="500">
+</p>
 鼠标左键打开媒体
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-17-47.png" width="500">
+  <img src="https://raw.githubusercontent.com/Archirithm/picture/main/media.png" width="500">
 </p>
 
 `Mod+P`打开quickshell锁屏
 <p align="center">
- <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-19 20-14-22.png" width="500">
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/lock.png" width="500">
 </p>
 
-`Mod+M`打开灵动岛天气
+`Mod+M`打开灵动岛dashboard
 <p align="center">
- <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-18-07.png" width="500"></p>
-
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/dashboard.png" width="500">
+ </p>
+ 脚本文件在/quickshell/scripts/parse_schedule.py，终端python3运行这个脚本会把路径里的md转译成json，运行前要配置脚本里的路径。
+ 
 `Mod+Shift+W`打开灵动岛壁纸
 <p align="center">
- <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-01 14-35-57.png" width="500">
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/wallpaper_select.png" width="500">
 </p>
 
 `Mod+A`打开灵动岛app启动器。
 <p align="center">
- <img src="https://raw.githubusercontent.com/Archirithm/picture/main/Screenshot from 2026-02-19 20-13-35.png" width="500">
+ <img src="https://raw.githubusercontent.com/Archirithm/picture/main/launcher.png" width="500">
 </p>
 
 现在快捷键全部变成quickshell自己的ipc接口。
