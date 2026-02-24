@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects 
+import Quickshell
 
 Rectangle {
     id: root
@@ -25,7 +26,7 @@ Rectangle {
             Image {
                 id: avatarImg
                 anchors.fill: parent
-                source: "file:///home/archirithm/Pictures/avatar/shelby.jpg"
+                source: "file://" + Quickshell.env("HOME") + "/logo.jpg"
                 sourceSize: Qt.size(140, 140)
                 fillMode: Image.PreserveAspectCrop
                 visible: false
@@ -61,7 +62,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
 
             Text {
-                text: "Archirithm"
+                text: "hu-hangyi"
                 color: "white"
                 Layout.alignment: Qt.AlignHCenter
                 font.family: "LXGW WenKai GB Screen"
@@ -70,7 +71,7 @@ Rectangle {
             }
 
             Text {
-                text: "@archbtw"
+                text: "@bg5wiy"
                 color: "#888888"
                 Layout.alignment: Qt.AlignHCenter
                 font.family: "LXGW WenKai GB Screen"

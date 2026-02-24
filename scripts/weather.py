@@ -6,6 +6,7 @@ import urllib.request
 import sys
 import ssl
 import datetime
+import requests
 
 # ================= 配置区域 =================
 CACHE_FILE = "/tmp/qs_weather_cache.json"
@@ -43,7 +44,7 @@ def get_weather_desc(code):
 
 def get_current_location():
     try:
-        with urllib.request.urlopen("https://ipapi.co/json/", timeout=3) as response:
+        with urllib.request.urlopen("http://ip-api.com/json/" + json.loads(requests.get(f'http://httpbin.org/ip').text)["origin"], timeout=3) as response:
             content = response.read().decode("utf-8")
             if not content:
                 return None, None, None, False
@@ -51,8 +52,8 @@ def get_current_location():
             if not isinstance(data, dict):
                 return None, None, None, False
             lat, lon, city = (
-                data.get("latitude"),
-                data.get("longitude"),
+                data.get("lat"),
+                data.get("lon")
                 data.get("city", "Unknown"),
             )
             if lat and lon:
@@ -84,6 +85,7 @@ def save_cache(data):
 
 def fetch_open_meteo(lat, lon, city):
     # 【新增】追加 daily 参数，请求未来 7 天的最高温度和天气代码，并自动适应当地时区
+    print(lat,lon)
     url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true&daily=weathercode,temperature_2m_max&timezone=auto"
     req = urllib.request.Request(url, headers={"User-Agent": "Quickshell-Widget"})
 

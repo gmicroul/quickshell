@@ -12,7 +12,7 @@ Rectangle {
     id: root
 
     // --- 样式配置 ---
-    color: Colorscheme.background
+    color: "#80" + Colorscheme.background.toString().substring(1)
     radius: Sizes.cornerRadius
     implicitHeight: Sizes.barHeight
     implicitWidth: layout.width + 24

@@ -9,7 +9,7 @@ Rectangle {
     id: root
 
     // ================= 1. 样式与尺寸 =================
-    color: Colorscheme.background
+    color: "#80" + Colorscheme.background.toString().substring(1)
     radius: Sizes.cornerRadius
     clip: true // 裁剪内容，用于展开动画
 

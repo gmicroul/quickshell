@@ -31,7 +31,7 @@ Item {
         id: wallpaper
         anchors.fill: parent
         z: 0
-        source: "file:///home/archirithm/.cache/wallpaper_rofi/current"
+        source: "file://" + Quickshell.env("HOME") + "/.cache/wallpaper_rofi/current"
         fillMode: Image.PreserveAspectCrop
         visible: false 
     }
@@ -108,7 +108,7 @@ Item {
 
             Image {
                 id: lockIconSource
-                source: "file:///home/archirithm/.config/quickshell/assets/icons/lock.svg"
+                source: "file://" + Quickshell.env("HOME") + "/.config/quickshell/assets/icons/lock.svg"
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
                 visible: false 
@@ -171,7 +171,7 @@ Item {
                             Layout.alignment: Qt.AlignHCenter
                         }
                         Text {
-                            text: Qt.formatDate(new Date(), "dddd, d MMMM yyyy")
+                            text: new Date().toLocaleString(Qt.locale(Quickshell.env("LANG")) , "yyyy MMM ddd dd")
                             color: Colorscheme.on_surface_variant
                             font.family: Sizes.fontFamilyMono
                             font.pixelSize: 18
@@ -189,7 +189,7 @@ Item {
                         Image {
                             id: avatarImg
                             anchors.fill: parent
-                            source: "file:///home/archirithm/Pictures/avatar/shelby.jpg"
+                            source: "file://" + Quickshell.env("HOME") + "/Pictures/avatar/shelby.jpg"
                             sourceSize: Qt.size(180, 180)
                             fillMode: Image.PreserveAspectCrop
                             visible: false

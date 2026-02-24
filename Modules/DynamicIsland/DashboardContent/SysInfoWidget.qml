@@ -63,7 +63,7 @@ Rectangle {
             Image {
                 id: avatarImg
                 anchors.fill: parent
-                source: "file:///home/archirithm/Pictures/avatar/shelby.jpg"
+                source: "file://" + Quickshell.env("HOME") + "/Pictures/avatar/shelby.jpg"
                 sourceSize: Qt.size(240, 240) 
                 fillMode: Image.PreserveAspectCrop
                 visible: false 

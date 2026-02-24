@@ -10,7 +10,7 @@ Rectangle {
 
     // 【修改点 1】 原 Colorscheme.surface 替换为固定深色背景
     // 你可以修改这里改变整个条的背景色
-    color: Colorscheme.background 
+    color: "#80" + Colorscheme.background.toString().substring(1)
     
     radius: Sizes.cornerRadius
     implicitHeight: Sizes.barHeight

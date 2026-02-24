@@ -97,7 +97,7 @@ Item {
         let swwwCmd = "swww img \"" + currentPath + "\" " +
                   "--transition-type \"any\" " +
                   "--transition-duration 3 " +
-                  "--transition-fps 60 " +
+                  "--transition-fps 165 " +
                   "--transition-bezier .43,1.19,1,.4";
 
         // 2. matugen 命令

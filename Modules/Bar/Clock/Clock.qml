@@ -11,7 +11,7 @@ import qs.config
 Rectangle {
     id: rectangle
     
-    color: Colorscheme.background 
+	color: "#80" + Colorscheme.background .toString().substring(1)
     
     implicitHeight: Sizes.barHeight
     implicitWidth: content.width + 24 // 内容宽度 + 左右各 12px 的内边距

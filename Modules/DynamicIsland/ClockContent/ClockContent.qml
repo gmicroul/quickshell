@@ -2,6 +2,7 @@ import QtQuick
 // 【重要】引入 Sizes.qml 所在的目录
 // 假设 ClockContent.qml 在 qs/Modules/DynamicIsland/Clock/，你需要向上跳 3 级
 import qs.config 
+import Quickshell
 
 Item {
     id: root
@@ -13,7 +14,7 @@ Item {
         
         Text {
             id: timeTxt
-            text: new Date().toLocaleString(Qt.locale("en_US"), "ddd dd MMM | hh:mm AP")
+            text: new Date().toLocaleString(Qt.locale(Quickshell.env("LANG")), "ddd dd MMM | hh:mm AP")
             
             color: "white"
             
@@ -36,7 +37,7 @@ Item {
                 running: true
                 repeat: true
                 triggeredOnStart: true
-                onTriggered: timeTxt.text = new Date().toLocaleString(Qt.locale("en_US"), "ddd dd MMM | hh:mm AP")
+                onTriggered: timeTxt.text = new Date().toLocaleString(Qt.locale(Quickshell.env("LANG")), "yyyy MMM ddd dd | H:m:s")
             }
         }
     }

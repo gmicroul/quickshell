@@ -109,5 +109,13 @@ mkdir -p ~/.config/environment.d && echo "QT_QPA_PLATFORMTHEME=gtk3" > ~/.config
 2. 播放歌曲的时候如果在播放器里面手动调整进度条会发现灵动岛歌词和媒体进度条没有同步变过去，这个时候只需要暂停播放就能同步进度条了。这个问题我发现dms中也没解决，如果有大佬有方法可以教教我。
 3. up的两个屏幕都是2k屏幕，所有配置文件的高宽都写死了，低分辨率下组件会很大，这个尺寸我以后得重写一遍。
 
+---
 
+## BG5WIY的fork版的已知问题
+1. swww切换时的帧率没发自适应，我设置为我自己屏幕的刷新率-165Hz,如要自定义，可前往Modules/DynamicIsland/WallpaperContent/WallpaperContent.qml:100修改
+
+## BG5WIY的fork版的一些更改
+1. 将up的代码中固定的home目录改为HOME变量
+2. 大部分组件背景改为半透明
+3. 日期显示改为自动显示系统默认语言，使用LANG变量判断，并设为24小时制，如有需要可以将Modules/DynamicIsland/ClockContent/ClockContent.qml:39将'H'改为hh获'h'
 

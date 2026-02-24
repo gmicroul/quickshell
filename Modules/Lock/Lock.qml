@@ -56,7 +56,7 @@ ShellRoot {
                 id: uiLoader
                 anchors.fill: parent
                 // 使用绝对路径
-                source: "/home/archirithm/.config/quickshell/Modules/Lock/LockSurface.qml"
+                source: Quickshell.env("HOME") + "/.config/quickshell/Modules/Lock/LockSurface.qml"
                 
                 onLoaded: {
                     if (item) item.context = internalContext

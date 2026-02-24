@@ -51,7 +51,7 @@ Rectangle {
     property int volW: 220
     property int volH: 40
     
-    color: Colorscheme.background
+    color: "#80" + Colorscheme.background.toString().substring(1)
     clip: true
     z: 100
     
