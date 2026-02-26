@@ -3,7 +3,7 @@ import json
 import os
 
 # 配置路径
-OBSIDIAN_MD = "/home/archirithm/Documents/Obsidian Vault/kebiao.md"
+OBSIDIAN_MD = "/home/user/Documents/Obsidian Vault/kebiao.md"
 CACHE_DIR = os.path.expanduser("~/.cache/quickshell")
 CACHE_FILE = os.path.join(CACHE_DIR, "schedule.json")
 
