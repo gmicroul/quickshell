@@ -89,6 +89,11 @@ Rectangle {
             if (root.showLauncher) { root.showLauncher = false; return "LAUNCHER_CLOSED" }
             else { root.expanded = false; root.showLyrics = false; root.showLauncher = true; return "LAUNCHER_OPENED" }
         }
+        function lyrics() {
+            root.showDashboard = false; root.showWallpaper = false; root.showLyrics = false;
+            if (root.showLyrics) { root.showLyrics = false; return "LYRICS_CLOSED" }
+            else { root.showLauncher = false; root.showWallpaper = false; root.expanded = false; root.showLyrics = true; root.showDashboard = flase; return "LYRICS_OPENED" }
+        }
     }
 
     PwObjectTracker { objects: [ Pipewire.defaultAudioSink ] }
