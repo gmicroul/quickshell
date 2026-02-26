@@ -3,7 +3,7 @@ import QtQuick
 
 QtObject {
     // 图标所在的绝对路径
-    readonly property string basePath: "/home/archirithm/.config/quickshell/assets/icons/"
+    readonly property string basePath: "/home/user/.config/quickshell/assets/icons/"
 
     // 注册图标值
     property string previous: basePath + "previous.svg"
