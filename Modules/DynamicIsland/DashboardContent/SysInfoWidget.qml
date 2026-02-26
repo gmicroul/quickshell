@@ -12,7 +12,7 @@ Rectangle {
 
     // ================== 极致轻量的数据获取逻辑 ==================
     // 1. 环境变量直读 (绝对零开销)
-    property string sysUser: Quickshell.env("USER") || "archirithm"
+    property string sysUser: Quickshell.env("USER") || "user"
     property string sysWm: (Quickshell.env("XDG_SESSION_DESKTOP") || "niri").toLowerCase()
 
     // 2. 硬件与主机名缓存
